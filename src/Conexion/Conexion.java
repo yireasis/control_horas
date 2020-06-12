@@ -8,6 +8,7 @@ package Conexion;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,7 @@ public class Conexion {
     public static Connection conectar(){
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/horas_hdi", "root","");
-            
+            System.out.println("La conexion es correcta");
             return cn;
             
             

@@ -98,7 +98,7 @@
       <Properties>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="4">
-            <StringItem index="0" value="Reinchard&#x9;"/>
+            <StringItem index="0" value="Reinchard"/>
             <StringItem index="1" value="Jesus"/>
             <StringItem index="2" value="Irving"/>
             <StringItem index="3" value="Misael"/>
@@ -106,6 +106,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="Combo_recursosItemStateChanged"/>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Combo_recursosActionPerformed"/>
       </Events>
       <AuxValues>

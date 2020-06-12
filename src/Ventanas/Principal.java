@@ -14,13 +14,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
  
 
 public class Principal extends javax.swing.JFrame {
   public static String user;
   String password;
-  String recurso; 
-  String reinchard ="Reinchard";
+ 
 
     public Principal() {
         initComponents();
@@ -57,7 +58,12 @@ public class Principal extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        Combo_recursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reinchard\t", "Jesus", "Irving", "Misael" }));
+        Combo_recursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reinchard", "Jesus", "Irving", "Misael" }));
+        Combo_recursos.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                Combo_recursosItemStateChanged(evt);
+            }
+        });
         Combo_recursos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Combo_recursosActionPerformed(evt);
@@ -163,37 +169,90 @@ public class Principal extends javax.swing.JFrame {
         
  
     private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
-        // TODO add your handling code here:
-        
+      // TODO add your handling code here:
+        Connection cn = Conexion.conectar();
        
-        
-        try {
-         Class.forName("com.mysql.jdbc.Driver"); 
-         Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/horas_hdi", "root","");
-         Statement st = cn.createStatement();
-         recurso = Combo_recursos.getSelectedItem().toString();
-          
-
+        String combo = Combo_recursos.getSelectedItem().toString();
       
-          System.out.println(recurso+"espacio"+reinchard);
-         st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
-         + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
-          JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-          
-            
-        
+         if (Campo_Horas != null){
+        //JOptionPane.showMessageDialog(rootPane, "Llena el campo de horas por favor");
+              throw new ArithmeticException("Llena el campo de horas por favor");
 
+           }
         
-        } catch (Exception e) {
-            e.printStackTrace();
         
-        }
-         
+        
+       //System.out.println(combo);
+      switch (combo) {
+          case "Reinchard":
+              System.out.println("El combo es Reinchard");
+              try {
+                  Statement st = cn.createStatement();
+                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
+                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
+                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+              } catch (SQLException ex) {
+                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+              } break;
+          case "Misael":
+              System.out.println("El combo es el Misa");
+              try {
+                  Statement st = cn.createStatement();
+                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_MISAEL)"
+                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
+                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+              } catch (SQLException ex) {
+                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+              } 
+              break;
+          case "Irving":
+              System.out.println("El combo es Irving");
+              try {
+                  Statement st = cn.createStatement();
+                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_IRVING)"
+                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
+                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+              } catch (SQLException ex) {
+                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+              } 
+              break;
+          case "Jesus":
+              System.out.println("El combo es Jesus");
+              try {
+                  Statement st = cn.createStatement();
+                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_JESUS)"
+                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
+                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                  
+                  
+              } catch (SQLException ex) {
+                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+              } break;
+          default:
+              break;
+              
+          
+      }
+        
+        
+ 
+        
+        
+        
+        
+        
+        
+        
     }//GEN-LAST:event_Boton_GuardarActionPerformed
 
     private void Combo_recursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_recursosActionPerformed
         // TODO add your handling code here:
+        
     }//GEN-LAST:event_Combo_recursosActionPerformed
+
+    private void Combo_recursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Combo_recursosItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Combo_recursosItemStateChanged
        
 
 
@@ -206,7 +265,10 @@ public class Principal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        try {
+           
+        
+     
+            try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
