@@ -1,15 +1,10 @@
 package Ventanas;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import javax.swing.JLabel;
-import javax.swing.JFrame;
-import java.text.SimpleDateFormat;
 import Conexion.Conexion;
-import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -29,12 +24,8 @@ public class Principal extends javax.swing.JFrame {
         setSize(400,550);
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
-        setLocationRelativeTo(null);   
-        
-    
+        setLocationRelativeTo(null);       
     }
-    
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -166,85 +157,71 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_HorasActionPerformed
  
-        
- 
+         
     private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
-      // TODO add your handling code here:
-        Connection cn = Conexion.conectar();
-       
+    
+         // TODO add your handling code here:
+
         String combo = Combo_recursos.getSelectedItem().toString();
-      
-         if (Campo_Horas != null){
-        //JOptionPane.showMessageDialog(rootPane, "Llena el campo de horas por favor");
-              throw new ArithmeticException("Llena el campo de horas por favor");
-
-           }
+        //DATOS
+        guardaDatos(combo);
         
-        
-        
-       //System.out.println(combo);
-      switch (combo) {
-          case "Reinchard":
-              System.out.println("El combo es Reinchard");
-              try {
-                  Statement st = cn.createStatement();
-                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
-                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
-                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-              } catch (SQLException ex) {
-                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-              } break;
-          case "Misael":
-              System.out.println("El combo es el Misa");
-              try {
-                  Statement st = cn.createStatement();
-                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_MISAEL)"
-                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
-                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-              } catch (SQLException ex) {
-                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-              } 
-              break;
-          case "Irving":
-              System.out.println("El combo es Irving");
-              try {
-                  Statement st = cn.createStatement();
-                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_IRVING)"
-                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
-                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-              } catch (SQLException ex) {
-                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-              } 
-              break;
-          case "Jesus":
-              System.out.println("El combo es Jesus");
-              try {
-                  Statement st = cn.createStatement();
-                  st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_JESUS)"
-                          + "VALUES ('"+Fecha.getText()+"','"+Area_Descripcion.getText()+"','"+Campo_Horas.getText()+"')");
-                  JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-                  
-                  
-              } catch (SQLException ex) {
-                  Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-              } break;
-          default:
-              break;
-              
-          
-      }
-        
-        
- 
-        
-        
-        
-        
-        
-        
-        
+        //Validacion del campo horas
+        if (Campo_Horas != null){
+            JOptionPane.showMessageDialog(rootPane, "Llena el campo de horas por favor");
+        }
     }//GEN-LAST:event_Boton_GuardarActionPerformed
+         // Colocar llamada a base de datos en una funciÃ³n
+    private void guardaDatos(String combo) {
 
+        switch (combo) {
+            case "Reinchard":
+                System.out.println("El combo es Reinchard");
+                try (Connection cn = Conexion.conectar(); // Es mejor manejar las conecxiones en el TRY 
+                     Statement st = cn.createStatement()){ // En esta version se cierra en automÃ¡tico la conexiÃ³n al finalizar el bloque TRY / CATCH
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
+                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "Misael":
+                System.out.println("El combo es Misa");
+                try (Connection cn = Conexion.conectar();
+                     Statement st = cn.createStatement()){
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_MISAEL)"
+                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "Irving":
+                System.out.println("El combo es Irving");
+                try (Connection cn = Conexion.conectar();
+                     Statement st = cn.createStatement()){
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_IRVING)"
+                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+            case "Jesus":
+                System.out.println("El combo es Jesus");
+                try (Connection cn = Conexion.conectar();
+                     Statement st = cn.createStatement()){
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_JESUS)"
+                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+        }
+    }
     private void Combo_recursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_recursosActionPerformed
         // TODO add your handling code here:
         
