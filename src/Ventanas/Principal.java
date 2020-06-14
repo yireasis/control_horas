@@ -8,24 +8,24 @@ import Conexion.Conexion;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
-
 import java.util.logging.Level;
 import java.util.logging.Logger;
- 
 
 public class Principal extends javax.swing.JFrame {
-  public static String user;
-  String password;
- 
+
+    public static String user;
+    String password;
 
     public Principal() {
         initComponents();
         Fecha.setText(fecha());
-        setSize(400,550);
+        setSize(600, 550);
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
-        setLocationRelativeTo(null);       
+        setLocationRelativeTo(null);
     }
+    
+        
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,6 +46,7 @@ public class Principal extends javax.swing.JFrame {
         Fecha = new javax.swing.JLabel();
         Etiqueta_Fecha = new javax.swing.JLabel();
         Boton_Guardar = new javax.swing.JButton();
+        Mensaje = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -73,9 +74,17 @@ public class Principal extends javax.swing.JFrame {
 
         Etiqueta_Descripcion.setText("Descripción de la actividad:");
 
-        Area_Descripcion.setColumns(20);
+        Area_Descripcion.setColumns(2);
         Area_Descripcion.setRows(5);
+        Area_Descripcion.setAutoscrolls(false);
+        Area_Descripcion.setMaximumSize(new java.awt.Dimension(100, 200));
+        Area_Descripcion.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                Area_DescripcionFocusGained(evt);
+            }
+        });
         jScrollPane1.setViewportView(Area_Descripcion);
+        Area_Descripcion.setLineWrap(true);
 
         Etiqueta_Fecha.setText("Fecha");
 
@@ -86,6 +95,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        Mensaje.setForeground(new java.awt.Color(255, 51, 51));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -94,13 +105,15 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(Boton_Guardar)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
                         .addComponent(Etiqueta_Descripcion)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(216, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(Boton_Guardar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addComponent(jScrollPane1)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -137,59 +150,69 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(Etiqueta_Descripcion)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(Boton_Guardar)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addGap(15, 15, 15)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Boton_Guardar)
+                    .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    
-    public static String fecha (){
+
+    public static String fecha() {
         Date fecha = new Date();
         SimpleDateFormat formatoFecha = new SimpleDateFormat("YYYY/MM/dd");
         return formatoFecha.format(fecha);
     }
-    
-    
+
+
     private void Campo_HorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_HorasActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Campo_HorasActionPerformed
- 
-         
-    private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
-    
-         // TODO add your handling code here:
 
+
+    private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
+
+        // TODO add your handling code here:
         String combo = Combo_recursos.getSelectedItem().toString();
         //DATOS
         guardaDatos(combo);
-        
-        //Validacion del campo horas
-        if (Campo_Horas != null){
-            JOptionPane.showMessageDialog(rootPane, "Llena el campo de horas por favor");
-        }
-    }//GEN-LAST:event_Boton_GuardarActionPerformed
-         // Colocar llamada a base de datos en una funciÃ³n
-    private void guardaDatos(String combo) {
 
+        
+    }//GEN-LAST:event_Boton_GuardarActionPerformed
+    // Colocar llamada a base de datos en una funciÃ³n
+
+    private void guardaDatos(String combo) {
+        
+       
+                //Validacion del campo horas
+           if (Campo_Horas.getText().trim().isEmpty()){
+               Mensaje.setText("¡ Por favor llena el campo de horas !");
+                
+     
+        }else{
+        Mensaje.setVisible(false);
         switch (combo) {
             case "Reinchard":
                 System.out.println("El combo es Reinchard");
-                try (Connection cn = Conexion.conectar(); // Es mejor manejar las conecxiones en el TRY 
-                     Statement st = cn.createStatement()){ // En esta version se cierra en automÃ¡tico la conexiÃ³n al finalizar el bloque TRY / CATCH
-                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
-                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
-                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
-                } catch (SQLException ex) {
-                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                break;
+                     
+                    try (Connection cn = Conexion.conectar(); // Es mejor manejar las conecxiones en el TRY 
+                            Statement st = cn.createStatement()) { // En esta version se cierra en automÃ¡tico la conexiÃ³n al finalizar el bloque TRY / CATCH
+                        st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
+                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+
+                        JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    break;
+                
             case "Misael":
                 System.out.println("El combo es Misa");
                 try (Connection cn = Conexion.conectar();
-                     Statement st = cn.createStatement()){
+                        Statement st = cn.createStatement()) {
                     st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_MISAEL)"
                             + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
                     JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
@@ -200,7 +223,7 @@ public class Principal extends javax.swing.JFrame {
             case "Irving":
                 System.out.println("El combo es Irving");
                 try (Connection cn = Conexion.conectar();
-                     Statement st = cn.createStatement()){
+                        Statement st = cn.createStatement()) {
                     st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_IRVING)"
                             + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
                     JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
@@ -211,7 +234,7 @@ public class Principal extends javax.swing.JFrame {
             case "Jesus":
                 System.out.println("El combo es Jesus");
                 try (Connection cn = Conexion.conectar();
-                     Statement st = cn.createStatement()){
+                        Statement st = cn.createStatement()) {
                     st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_JESUS)"
                             + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
                     JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
@@ -221,17 +244,22 @@ public class Principal extends javax.swing.JFrame {
                 }
                 break;
         }
+        
+           }
     }
     private void Combo_recursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_recursosActionPerformed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_Combo_recursosActionPerformed
 
     private void Combo_recursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Combo_recursosItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_Combo_recursosItemStateChanged
-       
 
+    private void Area_DescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Area_DescripcionFocusGained
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_Area_DescripcionFocusGained
 
     /**
      * @param args the command line arguments
@@ -242,10 +270,8 @@ public class Principal extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-           
-        
-     
-            try {
+
+        try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
@@ -281,6 +307,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel Etiqueta_Horas;
     private javax.swing.JLabel Etiqueta_Recurso;
     private javax.swing.JLabel Fecha;
+    private javax.swing.JLabel Mensaje;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
