@@ -19,7 +19,7 @@ public class Principal extends javax.swing.JFrame {
     public Principal() {
         initComponents();
         Fecha.setText(fecha());
-        setSize(600, 550);
+        setSize(800, 550);
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
         setLocationRelativeTo(null);
@@ -47,8 +47,20 @@ public class Principal extends javax.swing.JFrame {
         Etiqueta_Fecha = new javax.swing.JLabel();
         Boton_Guardar = new javax.swing.JButton();
         Mensaje = new javax.swing.JLabel();
+        Etiqueta_Clasificacion = new javax.swing.JLabel();
+        Combo_Clasificacion = new javax.swing.JComboBox<>();
+        Etiqueta_Interfaz = new javax.swing.JLabel();
+        Combo_Interfaz = new javax.swing.JComboBox<>();
+        Etiqueta_Estatus = new javax.swing.JLabel();
+        Combo_Estatus = new javax.swing.JComboBox<>();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        Area_Comentarios = new javax.swing.JTextArea();
+        Etiqueta_Comentarios = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
         Combo_recursos.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Reinchard", "Jesus", "Irving", "Misael" }));
         Combo_recursos.addItemListener(new java.awt.event.ItemListener() {
@@ -61,18 +73,31 @@ public class Principal extends javax.swing.JFrame {
                 Combo_recursosActionPerformed(evt);
             }
         });
+        getContentPane().add(Combo_recursos);
+        Combo_recursos.setBounds(30, 50, 110, 26);
 
+        Etiqueta_Recurso.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Recurso.setText("Recurso:");
+        getContentPane().add(Etiqueta_Recurso);
+        Etiqueta_Recurso.setBounds(29, 23, 88, 16);
 
+        Etiqueta_Horas.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Horas.setText("Horas:");
+        getContentPane().add(Etiqueta_Horas);
+        Etiqueta_Horas.setBounds(580, 20, 37, 16);
 
         Campo_Horas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Campo_HorasActionPerformed(evt);
             }
         });
+        getContentPane().add(Campo_Horas);
+        Campo_Horas.setBounds(580, 50, 53, 24);
 
+        Etiqueta_Descripcion.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Descripcion.setText("Descripción de la actividad:");
+        getContentPane().add(Etiqueta_Descripcion);
+        Etiqueta_Descripcion.setBounds(29, 101, 155, 16);
 
         Area_Descripcion.setColumns(2);
         Area_Descripcion.setRows(5);
@@ -86,7 +111,17 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(Area_Descripcion);
         Area_Descripcion.setLineWrap(true);
 
-        Etiqueta_Fecha.setText("Fecha");
+        getContentPane().add(jScrollPane1);
+        jScrollPane1.setBounds(29, 123, 740, 83);
+
+        Fecha.setForeground(new java.awt.Color(255, 255, 255));
+        getContentPane().add(Fecha);
+        Fecha.setBounds(680, 40, 96, 26);
+
+        Etiqueta_Fecha.setForeground(new java.awt.Color(255, 255, 255));
+        Etiqueta_Fecha.setText("Fecha:");
+        getContentPane().add(Etiqueta_Fecha);
+        Etiqueta_Fecha.setBounds(680, 20, 50, 16);
 
         Boton_Guardar.setText("GUARDAR");
         Boton_Guardar.addActionListener(new java.awt.event.ActionListener() {
@@ -94,68 +129,62 @@ public class Principal extends javax.swing.JFrame {
                 Boton_GuardarActionPerformed(evt);
             }
         });
+        getContentPane().add(Boton_Guardar);
+        Boton_Guardar.setBounds(30, 400, 100, 32);
 
-        Mensaje.setForeground(new java.awt.Color(255, 51, 51));
+        Mensaje.setForeground(new java.awt.Color(221, 103, 33));
+        getContentPane().add(Mensaje);
+        Mensaje.setBounds(150, 400, 228, 18);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Etiqueta_Descripcion)
-                        .addContainerGap(216, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(Boton_Guardar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jScrollPane1)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(Combo_recursos, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(Etiqueta_Recurso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(51, 51, 51)
-                                        .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(61, 61, 61)
-                                        .addComponent(Etiqueta_Fecha)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(Etiqueta_Horas)
-                                    .addComponent(Campo_Horas, javax.swing.GroupLayout.PREFERRED_SIZE, 53, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(18, 18, 18))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Etiqueta_Recurso)
-                    .addComponent(Etiqueta_Horas)
-                    .addComponent(Etiqueta_Fecha))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(Combo_recursos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(Campo_Horas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(Fecha, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addComponent(Etiqueta_Descripcion)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(15, 15, 15)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Boton_Guardar)
-                    .addComponent(Mensaje, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(47, Short.MAX_VALUE))
-        );
+        Etiqueta_Clasificacion.setForeground(new java.awt.Color(255, 255, 255));
+        Etiqueta_Clasificacion.setText("Clasificación:");
+        getContentPane().add(Etiqueta_Clasificacion);
+        Etiqueta_Clasificacion.setBounds(190, 20, 90, 20);
+
+        Combo_Clasificacion.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Cambio", "Mejora", "Incidencia" }));
+        getContentPane().add(Combo_Clasificacion);
+        Combo_Clasificacion.setBounds(190, 50, 100, 26);
+
+        Etiqueta_Interfaz.setForeground(new java.awt.Color(255, 255, 255));
+        Etiqueta_Interfaz.setText("Interfaz:");
+        getContentPane().add(Etiqueta_Interfaz);
+        Etiqueta_Interfaz.setBounds(330, 20, 70, 16);
+
+        Combo_Interfaz.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Egresos", "P. Siniestros", "P. Agentes", "Ingresos" }));
+        getContentPane().add(Combo_Interfaz);
+        Combo_Interfaz.setBounds(330, 50, 90, 26);
+
+        Etiqueta_Estatus.setForeground(new java.awt.Color(255, 255, 255));
+        Etiqueta_Estatus.setText("Estatus:");
+        getContentPane().add(Etiqueta_Estatus);
+        Etiqueta_Estatus.setBounds(460, 20, 60, 16);
+
+        Combo_Estatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Abierta", "Cerrada" }));
+        getContentPane().add(Combo_Estatus);
+        Combo_Estatus.setBounds(460, 50, 80, 26);
+
+        Area_Comentarios.setColumns(20);
+        Area_Comentarios.setRows(5);
+        jScrollPane2.setViewportView(Area_Comentarios);
+        Area_Comentarios.setLineWrap(true);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(30, 260, 740, 83);
+
+        Etiqueta_Comentarios.setForeground(new java.awt.Color(255, 255, 255));
+        Etiqueta_Comentarios.setText("Comentarios:");
+        getContentPane().add(Etiqueta_Comentarios);
+        Etiqueta_Comentarios.setBounds(30, 230, 100, 16);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/Vector.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(230, 210, 560, 320);
+
+        jLabel1.setBackground(new java.awt.Color(27, 39, 57));
+        jLabel1.setOpaque(true);
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 800, 540);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -184,6 +213,9 @@ public class Principal extends javax.swing.JFrame {
     // Colocar llamada a base de datos en una funciÃ³n
 
     private void guardaDatos(String combo) {
+        String clasificacion = Combo_Clasificacion.getSelectedItem().toString();
+        String interfaz = Combo_Interfaz.getSelectedItem().toString();
+        String estatus = Combo_Estatus.getSelectedItem().toString();
         
        
                 //Validacion del campo horas
@@ -199,8 +231,13 @@ public class Principal extends javax.swing.JFrame {
                      
                     try (Connection cn = Conexion.conectar(); // Es mejor manejar las conecxiones en el TRY 
                             Statement st = cn.createStatement()) { // En esta version se cierra en automÃ¡tico la conexiÃ³n al finalizar el bloque TRY / CATCH
-                        st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_REINCHARD)"
-                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
+                        st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,CLASIFICACION,INTERFAZ,ESTATUS,COMENTARIOS,HRS_REINCHARD)"
+                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" 
+                                + clasificacion + "','"
+                                + interfaz + "','"
+                                + estatus + "','"
+                                + Area_Comentarios.getText() + "','"
+                                + Campo_Horas.getText() + "')");
 
                         JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
 
@@ -213,9 +250,15 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("El combo es Misa");
                 try (Connection cn = Conexion.conectar();
                         Statement st = cn.createStatement()) {
-                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_MISAEL)"
-                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
-                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                     st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,CLASIFICACION,INTERFAZ,ESTATUS,COMENTARIOS,HRS_MISAEL)"
+                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" 
+                                + clasificacion + "','"
+                                + interfaz + "','"
+                                + estatus + "','"
+                                + Area_Comentarios.getText() + "','"
+                                + Campo_Horas.getText() + "')");
+
+                        JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
                 } catch (SQLException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -224,9 +267,15 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("El combo es Irving");
                 try (Connection cn = Conexion.conectar();
                         Statement st = cn.createStatement()) {
-                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_IRVING)"
-                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
-                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,CLASIFICACION,INTERFAZ,ESTATUS,COMENTARIOS,HRS_IRVING)"
+                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" 
+                                + clasificacion + "','"
+                                + interfaz + "','"
+                                + estatus + "','"
+                                + Area_Comentarios.getText() + "','"
+                                + Campo_Horas.getText() + "')");
+
+                        JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
                 } catch (SQLException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -235,9 +284,15 @@ public class Principal extends javax.swing.JFrame {
                 System.out.println("El combo es Jesus");
                 try (Connection cn = Conexion.conectar();
                         Statement st = cn.createStatement()) {
-                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,HRS_JESUS)"
-                            + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" + Campo_Horas.getText() + "')");
-                    JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
+                    st.executeUpdate("INSERT INTO horas (FECHA,DESCRIPCION,CLASIFICACION,INTERFAZ,ESTATUS,COMENTARIOS,HRS_JESUS)"
+                                + "VALUES ('" + Fecha.getText() + "','" + Area_Descripcion.getText() + "','" 
+                                + clasificacion + "','"
+                                + interfaz + "','"
+                                + estatus + "','"
+                                + Area_Comentarios.getText() + "','"
+                                + Campo_Horas.getText() + "')");
+
+                        JOptionPane.showMessageDialog(rootPane, "Datos guardados correctamente");
 
                 } catch (SQLException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
@@ -298,16 +353,27 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea Area_Comentarios;
     private javax.swing.JTextArea Area_Descripcion;
     private javax.swing.JButton Boton_Guardar;
     private javax.swing.JTextField Campo_Horas;
+    private javax.swing.JComboBox<String> Combo_Clasificacion;
+    private javax.swing.JComboBox<String> Combo_Estatus;
+    private javax.swing.JComboBox<String> Combo_Interfaz;
     private javax.swing.JComboBox<String> Combo_recursos;
+    private javax.swing.JLabel Etiqueta_Clasificacion;
+    private javax.swing.JLabel Etiqueta_Comentarios;
     private javax.swing.JLabel Etiqueta_Descripcion;
+    private javax.swing.JLabel Etiqueta_Estatus;
     private javax.swing.JLabel Etiqueta_Fecha;
     private javax.swing.JLabel Etiqueta_Horas;
+    private javax.swing.JLabel Etiqueta_Interfaz;
     private javax.swing.JLabel Etiqueta_Recurso;
     private javax.swing.JLabel Fecha;
     private javax.swing.JLabel Mensaje;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables
 }
