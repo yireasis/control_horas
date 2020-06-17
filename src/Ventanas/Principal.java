@@ -24,8 +24,9 @@ public class Principal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
         setLocationRelativeTo(null);
+       
     }
-    
+   
         
     
     /**
@@ -100,6 +101,7 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(Campo_Horas);
         Campo_Horas.setBounds(580, 50, 53, 24);
         Campo_Horas.setColumns(1);
+        Campo_Horas.setDocument(new Limitador(2));
 
         Etiqueta_Descripcion.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Descripcion.setText("Descripción de la actividad:");
@@ -328,11 +330,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void Campo_HorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_HorasKeyTyped
         // TODO add your handling code here:
-        
+         
         char validar = evt.getKeyChar();
         if (Character.isLetter(validar)){
         getToolkit().beep();
        JOptionPane.showMessageDialog(rootPane, "Ingresa solo numeros por favor");
+       
+       //Se agrego la LIMITACION e CARACTERES EN CUSTOM CODE
 
         }
          
