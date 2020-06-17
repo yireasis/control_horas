@@ -5,6 +5,7 @@ import java.sql.Connection;
 import java.util.Date;
 import java.text.SimpleDateFormat;
 import Conexion.Conexion;
+import com.sun.glass.events.KeyEvent;
 import java.sql.SQLException;
 import java.sql.Statement;
 import javax.swing.JOptionPane;
@@ -91,8 +92,14 @@ public class Principal extends javax.swing.JFrame {
                 Campo_HorasActionPerformed(evt);
             }
         });
+        Campo_Horas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                Campo_HorasKeyTyped(evt);
+            }
+        });
         getContentPane().add(Campo_Horas);
         Campo_Horas.setBounds(580, 50, 53, 24);
+        Campo_Horas.setColumns(1);
 
         Etiqueta_Descripcion.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Descripcion.setText("Descripción de la actividad:");
@@ -198,6 +205,7 @@ public class Principal extends javax.swing.JFrame {
 
     private void Campo_HorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_HorasActionPerformed
         // TODO add your handling code here:
+       
     }//GEN-LAST:event_Campo_HorasActionPerformed
 
 
@@ -207,6 +215,7 @@ public class Principal extends javax.swing.JFrame {
         String combo = Combo_recursos.getSelectedItem().toString();
         //DATOS
         guardaDatos(combo);
+        
 
         
     }//GEN-LAST:event_Boton_GuardarActionPerformed
@@ -296,6 +305,7 @@ public class Principal extends javax.swing.JFrame {
 
                 } catch (SQLException ex) {
                     Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                   
                 }
                 break;
         }
@@ -315,6 +325,18 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
        
     }//GEN-LAST:event_Area_DescripcionFocusGained
+
+    private void Campo_HorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_HorasKeyTyped
+        // TODO add your handling code here:
+        
+        char validar = evt.getKeyChar();
+        if (Character.isLetter(validar)){
+        getToolkit().beep();
+       JOptionPane.showMessageDialog(rootPane, "Ingresa solo numeros por favor");
+
+        }
+         
+    }//GEN-LAST:event_Campo_HorasKeyTyped
 
     /**
      * @param args the command line arguments
