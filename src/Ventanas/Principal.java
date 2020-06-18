@@ -11,6 +11,7 @@ import java.sql.Statement;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -24,6 +25,7 @@ public class Principal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
         setLocationRelativeTo(null);
+        setIconImage (new ImageIcon(getClass().getResource("/imagenes/V.jpg")).getImage());
     }
         
     /**
@@ -120,9 +122,10 @@ public class Principal extends javax.swing.JFrame {
         getContentPane().add(jScrollPane1);
         jScrollPane1.setBounds(29, 123, 740, 83);
 
+        Fecha.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
         Fecha.setForeground(new java.awt.Color(255, 255, 255));
         getContentPane().add(Fecha);
-        Fecha.setBounds(680, 40, 96, 26);
+        Fecha.setBounds(680, 50, 96, 26);
 
         Etiqueta_Fecha.setForeground(new java.awt.Color(255, 255, 255));
         Etiqueta_Fecha.setText("Fecha:");
