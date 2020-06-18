@@ -24,11 +24,8 @@ public class Principal extends javax.swing.JFrame {
         setResizable(false);
         setTitle("Control de horas Vector v1.0");
         setLocationRelativeTo(null);
-       
     }
-   
         
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -207,22 +204,24 @@ public class Principal extends javax.swing.JFrame {
 
     private void Campo_HorasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Campo_HorasActionPerformed
         // TODO add your handling code here:
-       
     }//GEN-LAST:event_Campo_HorasActionPerformed
-
-
     private void Boton_GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton_GuardarActionPerformed
 
         // TODO add your handling code here:
         String combo = Combo_recursos.getSelectedItem().toString();
         //DATOS
         guardaDatos(combo);
-        
-
-        
     }//GEN-LAST:event_Boton_GuardarActionPerformed
     // Colocar llamada a base de datos en una funciÃ³n
+    
+    
+    private void limpiarCampos(){
+    Campo_Horas.setText(null);
+    Area_Descripcion.setText(null);
+    Area_Comentarios.setText(null);
+    }
 
+    
     private void guardaDatos(String combo) {
         String clasificacion = Combo_Clasificacion.getSelectedItem().toString();
         String interfaz = Combo_Interfaz.getSelectedItem().toString();
@@ -310,9 +309,11 @@ public class Principal extends javax.swing.JFrame {
                    
                 }
                 break;
+                
         }
-        
+        limpiarCampos();
            }
+           
     }
     private void Combo_recursosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Combo_recursosActionPerformed
         // TODO add your handling code here:
@@ -322,19 +323,18 @@ public class Principal extends javax.swing.JFrame {
     private void Combo_recursosItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_Combo_recursosItemStateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_Combo_recursosItemStateChanged
-
     private void Area_DescripcionFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_Area_DescripcionFocusGained
         // TODO add your handling code here:
-       
+        
     }//GEN-LAST:event_Area_DescripcionFocusGained
-
     private void Campo_HorasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Campo_HorasKeyTyped
         // TODO add your handling code here:
-         
+        
         char validar = evt.getKeyChar();
         if (Character.isLetter(validar)){
         getToolkit().beep();
        JOptionPane.showMessageDialog(rootPane, "Ingresa solo numeros por favor");
+       Campo_Horas.setText("00");
        
        //Se agrego la LIMITACION e CARACTERES EN CUSTOM CODE
 
@@ -342,6 +342,11 @@ public class Principal extends javax.swing.JFrame {
          
     }//GEN-LAST:event_Campo_HorasKeyTyped
 
+    
+    
+    
+    
+    
     /**
      * @param args the command line arguments
      */
